@@ -22,11 +22,15 @@ def gw2_request(request_type, item_nums, retries = 25):
         except:
             retry += 1
         else:
+	    success = True
             break
         finally:
             if retry == retries:
                 break
-    
+		
+    if not success:
+	return None
+
     j = r.json()
 
     return j
